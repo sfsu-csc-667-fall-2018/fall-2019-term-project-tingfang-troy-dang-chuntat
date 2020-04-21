@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	h1=title
+	p Welcome to #{title}
+	ul
+		li
+			a(href="/users/login") Log In
+		li
+			a(href="/users/signup") Sign Up
+		li
+			a(href="/lobby") Lobby Page
+		li
+			a(href="/games/42") Game Page (with ID 42) (TBA)
