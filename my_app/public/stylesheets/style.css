@@ -41,12 +41,56 @@ body {
 .gamerooms {
 	float: left;
 	width: 75%;
-	height: 600px;
+	height: 610px;
 	background: #ccc;
+	overflow: auto;
 }
 
 .gamerooms section {
 	padding: 25px;
+}
+
+.gamerooms section ul {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.gamerooms section ul li {
+	background-color: #f1f1f1;
+	width: 25%;
+	text-align: center;
+	padding: 14px 16px;
+	list-style-type: none;
+	margin: 14px 16px;
+	border: 1px solid black;
+}
+
+.gamerooms section ul li p:first-child {
+	font-size: 24px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.gamerooms section ul li p {
+	margin-top: 0px;
+}
+
+.gamerooms section ul li a {
+	text-decoration: none;
+	font-size: 24px;
+	color: white;
+	background-color: #4eb572;
+	padding: 5px 15px;
+	border: 1px solid green;
+	cursor: pointer;
+	width: 50%;
+	font-size: 24px;
+	margin: 80px auto;
+	transition: background-color 150ms ease-in-out;
+}
+
+.gamerooms section ul li a:hover {
+	background-color: #88cda0;
 }
 
 .gamerooms section:after {
@@ -59,7 +103,7 @@ body {
 	float: left;
 	width: 25%;
 	background-color: #f1f1f1;
-	height: 600px;
+	height: 610px;
 	text-align: center;
 }
 
@@ -98,7 +142,7 @@ body {
 }
 
 
-.authentication .form-group, h1, a {
+.authentication .form-group, .authentication h1, .authentication a {
 	width: 100%;
 	max-width: 500px;
 	padding: 15px;
