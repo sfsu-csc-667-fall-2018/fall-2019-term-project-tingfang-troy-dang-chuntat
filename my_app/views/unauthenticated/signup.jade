@@ -1,0 +1,21 @@
+extends layout
+
+block content
+	div.authentication
+		h1 Texas Hold 'em
+		div
+			form()
+				div.form-group
+					label(for='username') Username:
+					input(type='text', class='form-control', name='username', placeholder='Username...')
+				div.form-group
+					label(for='email') Email:
+					input(type='text', class='form-control', name='email', placeholder='Email...')
+				div.form-group
+					label(for='pw') Password:
+					input(type='password', class='form-control', name='password')
+				div.form-group
+					label(for='pw2') Confirm Password:
+					input(type='password', class='form-control', name='confirmPassword')
+				div.form-group
+					button(type='submit') Sign up
