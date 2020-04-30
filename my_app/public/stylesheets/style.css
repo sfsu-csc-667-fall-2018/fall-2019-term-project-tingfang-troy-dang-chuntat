@@ -140,9 +140,24 @@ body {
 }
 
 .game section {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
 	background: #ccc;
 	height: 100vh;
+	position: relative;
 }
+
+.game section .seats {
+	display: grid;
+	position: absolute;
+	height: 650px;
+    width: 800px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
 
 .game .chair {
 	height: 100px;
@@ -164,15 +179,54 @@ body {
 	padding-top: 5px;
 }
 
-.game .player1 {
+.player1,
+.player2,
+.player3,
+.player4,
+.player5,
+.player6 {
+	display: flex;
+	flex-flow: row nowrap;
+}
 
+.game .player1 {
+    padding-left: 10px;
+    padding-top: 30px;
+}
+
+.game .player2 {
+	justify-content: center;
+}
+
+.game .player3 {
+	justify-content: flex-end;
+    padding-right: 10px;
+    padding-top: 30px;
+}
+
+.game .player4 {
+	align-items: flex-end;
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+
+.game .player5 {
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.game .player6 {
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding-right: 10px;
+    padding-bottom: 30px;
 }
 
 .game .table {
 	background-color: #4aad4a;
 	height: 400px;
-	width: 400px;
-	border-radius: 50%;
+	width: 700px;
+	border-radius: 25%;
 	margin: 0 auto;
 	border: 1em solid black;
 	display: flex;
@@ -207,7 +261,7 @@ body {
 .game .card .card-img {
 	text-align: center;
 	margin: 0;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 .game .black {
