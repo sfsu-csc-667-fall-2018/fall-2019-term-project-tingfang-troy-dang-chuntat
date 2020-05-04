@@ -1,0 +1,39 @@
+extends layout
+
+block content
+	//- div.navbar
+	//- 	ul
+	//- 		li
+	//- 			a Texas Hold 'em
+	//- 		li 
+	//- 			a(href="/users/login") Log In
+
+	div.gamerooms
+		section Games go here (To be added with Database) Example for now
+			ul
+				li
+					p Game Room 42
+					p (0/8)
+					a(href="/games/42") Join
+				li
+					p Game Room 117
+					p (0/8)
+					a(href="/games/117") Join
+				li
+					p Game Room 69
+					p (0/8)
+					a(href="/games/69") Join
+				li
+					p Game Room 81
+					p (0/8)
+					a(href="/games/81") Join
+				li
+					p Game Room 21
+					p (0/8)
+					a(href="/games/21") Join
+
+	div.buttons
+		article
+			button
+				a(href="/games/42") Play Now
+			button Create Room

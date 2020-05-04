@@ -1,0 +1,44 @@
+extends layout
+
+block content
+	p This is the authenticated game page
+	div.game
+		section
+			div.cair
+				div.chair.player1
+					div.chair-name Person 1
+					div.chair-money $100
+				div.chair.player2
+					div.chair-name Person 2
+					div.chair-money $100
+				div.chair.player3
+					div.chair-name Person 3
+					div.chair-money $100
+				div.chair.player4
+					div.chair-name Person 4
+					div.chair-money $100
+				div.chair.player5
+					div.chair-name Person 5
+					div.chair-money $100
+				div.chair.player6
+					div.chair-name Person 6
+					div.chair-money $100
+			div.table
+				div.board
+					// Spade -> S; Heart -> H; Club -> C; Diamond -> D
+					div.card
+						p.card-text.black A
+						p.card-img.black S
+					div.card
+						p.card-text.black K
+						p.card-img.red H
+					div.card
+						p.card-text.black Q
+						p.card-img.black C
+					div.card
+						p.card-text.black J
+						p.card-img.red D
+					div.card
+						p.card-text.black 10
+						p.card-img.red D
+	p I'm in game room for #{id}
