@@ -2,16 +2,16 @@ extends layout
 
 block content
 	h1=title
-	p Welcome to #{title}
+	p Welcome #{username} to #{title}
 	ul
 		li
-			a(href="/users/login") Log In
+			a(href="/login") Log In
 		br
 		li
-			a(href="/users/signup") Sign Up
+			a(href="/signup") Sign Up
 		br
 		li
 			a(href="/lobby") Lobby Page
-		br
-		li
-			a(href="/games/42") Game Page (with ID 42) (TBA)
+		//- br
+		//- li
+		//- 	a(href="/games/42") Game Page (with ID 42) (TBA)

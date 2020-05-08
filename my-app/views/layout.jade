@@ -2,12 +2,16 @@ doctype html
 html
   head
     title= title
+    username = username
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div.navbar
       ul
         li
-          a Texas Hold 'em
-        li 
-          a(href="/users/login") Log In
+          a(href="/") Texas Hold 'em
+        li
+          if username == ""
+            a(href="/login") Log in
+          else 
+            a(href="/logout") Log out
     block content
