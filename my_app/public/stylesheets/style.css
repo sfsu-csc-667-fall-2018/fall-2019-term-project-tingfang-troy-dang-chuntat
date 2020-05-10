@@ -1,4 +1,5 @@
 /* ---Lobby Page--- */
+
 body {
 	margin: 0px;
 }
@@ -50,6 +51,12 @@ body {
 
 .gamerooms section {
 	padding: 25px;
+	text-align: right;
+}
+
+.gamerooms section .pageSwitch a {
+	font-size: 18px;
+	padding-left: 15px;
 }
 
 .gamerooms section ul {

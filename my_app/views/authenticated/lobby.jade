@@ -9,28 +9,30 @@ block content
 				a(href="/users/login") Log In
 
 	div.gamerooms
-		section Games go here (To be added with Database) Example for now
+		section
+			div.pageSwitch
+				- var next = +page+1
+				- var last = +page-1
+				- var lastPage = Math.floor(+rooms.length/9)
+				if page > 0
+					a(href="/lobby/" + last) ←
+				if page < lastPage
+					a(href="/lobby/" + next) →
+
 			ul
-				li
-					p Game Room 42
-					p (0/8)
-					a(href="/games/42") Join
-				li
-					p Game Room 117
-					p (0/8)
-					a(href="/games/117") Join
-				li
-					p Game Room 69
-					p (0/8)
-					a(href="/games/69") Join
-				li
-					p Game Room 81
-					p (0/8)
-					a(href="/games/81") Join
-				li
-					p Game Room 21
-					p (0/8)
-					a(href="/games/21") Join
+
+				//calculate how many rooms to list out
+				- var lastRoom = +rooms.length
+				if lastRoom > +page*9+9
+					- lastRoom = +page*9+9
+
+				//Spawn rooms (For Loop)
+				- for (var i = +page*9; i < lastRoom; ++i) {
+					li
+						p= 'Game Room ' + rooms[i]
+						p (0/8)
+						a(href="/games/" + rooms[i]) Join
+				- }
 
 	div.buttons
 		article
