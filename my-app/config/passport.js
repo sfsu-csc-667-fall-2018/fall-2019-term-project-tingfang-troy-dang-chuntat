@@ -43,4 +43,5 @@ passport.use('local', new LocalStrategy((username, password, cb) => {
 passport.deserializeUser(function(user, done) {
 done(null, user);
   });
+  
   module.exports = passport;

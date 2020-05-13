@@ -1,7 +1,7 @@
 extends layout
 
 block content
-	p This is the authenticated game page
+	//- p This is the authenticated game page #{id}
 	div.game
 		section
 			div.cair
@@ -42,3 +42,8 @@ block content
 						p.card-text.black 10
 						p.card-img.red D
 	p I'm in game room for #{id}
+	div.buttons
+	article
+		button
+			a(href="/games/quit") Quit
+	
