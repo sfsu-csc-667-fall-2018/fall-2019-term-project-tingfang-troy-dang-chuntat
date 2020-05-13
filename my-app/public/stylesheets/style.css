@@ -1,4 +1,3 @@
-/* ---Lobby Page--- */
 body {
 	margin: 0px;
 }
@@ -16,7 +15,9 @@ body {
 	font-size: 24px;
 }
 
-.navbar li a {
+.navbar li a, .navbar li p {
+	margin: 0px;
+	font-size: 18px;
 	display: block;
 	color: white;
 	text-align: center;
@@ -41,13 +42,19 @@ body {
 .gamerooms {
 	float: left;
 	width: 75%;
-	height: 610px;
+	height: 100vh;
 	background: #ccc;
 	overflow: auto;
 }
 
 .gamerooms section {
 	padding: 25px;
+	text-align: right;
+}
+
+.gamerooms section .pageSwitch a {
+	font-size: 18px;
+	padding-left: 15px;
 }
 
 .gamerooms section ul {
@@ -103,7 +110,7 @@ body {
 	float: left;
 	width: 25%;
 	background-color: #f1f1f1;
-	height: 610px;
+	height: 100vh;
 	text-align: center;
 }
 
@@ -133,6 +140,142 @@ body {
 	margin-bottom: 2em;
 }
 
+/* ---GAME ROOM--- */
+.game {
+}
+
+.game section {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+	background: #ccc;
+	height: 100vh;
+	position: relative;
+}
+
+.game section .seats {
+	display: grid;
+	position: absolute;
+	height: 650px;
+    width: 800px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+.game .chair {
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	background-color: grey;
+	display: inline-block;
+	text-align: center;
+	justify-content: center;
+	margin: 5px;
+}
+
+.game .chair .chair-name {
+	padding-top: 40%;
+}
+
+.game .chair .chair-money {
+	font-size: 14px;
+	padding-top: 5px;
+}
+
+.player1,
+.player2,
+.player3,
+.player4,
+.player5,
+.player6 {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.game .player1 {
+    padding-left: 10px;
+    padding-top: 30px;
+}
+
+.game .player2 {
+	justify-content: center;
+}
+
+.game .player3 {
+	justify-content: flex-end;
+    padding-right: 10px;
+    padding-top: 30px;
+}
+
+.game .player4 {
+	align-items: flex-end;
+    padding-left: 10px;
+    padding-bottom: 30px;
+}
+
+.game .player5 {
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.game .player6 {
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding-right: 10px;
+    padding-bottom: 30px;
+}
+
+.game .table {
+	background-color: #4aad4a;
+	height: 400px;
+	width: 700px;
+	border-radius: 25%;
+	margin: 0 auto;
+	border: 1em solid black;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.game .board {
+	position: relative;
+}
+
+.game .card {
+	border: .2em solid black;
+	border-radius: 10%;
+	height: 70px;
+	width: 48px;
+	margin-right: 5px;
+	float: left;
+	background-color: white;
+}
+
+.game .card .card-text {
+	margin: 0;
+	margin-top: 15%;
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold;
+	padding: 0;
+}
+
+.game .card .card-img {
+	text-align: center;
+	margin: 0;
+	font-size: 1.5em;
+}
+
+.game .black {
+	color: black;
+}
+
+.game .red {
+	color: red;
+}
 
 /* ---AUTHENTICATION PAGES--- */
 .authentication body {
@@ -188,89 +331,4 @@ body {
 
 .authentication button[type=submit]:hover {
   background-color: #45a049;
-}
-
-
-
-
-.game {
-}
-
-.game section {
-	background: #ccc;
-	height: 100vh;
-}
-
-.game .chair {
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	background-color: grey;
-	display: inline-block;
-	text-align: center;
-	justify-content: center;
-	margin: 5px;
-}
-
-.game .chair .chair-name {
-	padding-top: 40%;
-}
-
-.game .chair .chair-money {
-	font-size: 14px;
-	padding-top: 5px;
-}
-
-.game .player1 {
-
-}
-
-.game .table {
-	background-color: #4aad4a;
-	height: 400px;
-	width: 400px;
-	border-radius: 50%;
-	margin: 0 auto;
-	border: 1em solid black;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-}
-
-.game .board {
-	position: relative;
-}
-
-.game .card {
-	border: .2em solid black;
-	border-radius: 10%;
-	height: 70px;
-	width: 48px;
-	margin-right: 5px;
-	float: left;
-	background-color: white;
-}
-
-.game .card .card-text {
-	margin: 0;
-	margin-top: 15%;
-	text-align: center;
-	font-size: 1.5em;
-	font-weight: bold;
-	padding: 0;
-}
-
-.game .card .card-img {
-	text-align: center;
-	margin: 0;
-	font-size: 2em;
-}
-
-.game .black {
-	color: black;
-}
-
-.game .red {
-	color: red;
 }
