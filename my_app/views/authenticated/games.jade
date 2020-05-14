@@ -4,7 +4,7 @@ block content
 	div.navbar
 		ul
 			li
-				a(href="/lobby") Texas Hold 'em 
+				a(href="/lobby/1") Texas Hold 'em 
 			li 
 				p Room #{id}
 			li 
@@ -30,9 +30,8 @@ block content
 						div.chair-name Person 4
 						div.chair-money $100
 				div.player5
-					div.chair
-						div.chair-name Person 5
-						div.chair-money $100
+					div.chair-empty
+						div.chair-name SIT
 				div.player6
 					div.chair
 						div.chair-name Person 6
@@ -55,5 +54,19 @@ block content
 					div.card
 						p.card-text.black 10
 						p.card-img.red ♦️
+		div.responses
+			ul
+				li
+					button(type='submit') FOLD
+				li
+					button(type='submit') CHECK
+				li 
+					button(type='submit') CALL X
+				li 
+					button(type='submit') CALL ANY
+				li
+					button(type='submit') RAISE X
+				li
+					input(type='range' min="1" max="100" value="1")
 
 

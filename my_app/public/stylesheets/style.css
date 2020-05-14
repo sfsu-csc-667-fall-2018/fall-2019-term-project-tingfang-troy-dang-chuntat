@@ -10,6 +10,7 @@ body {
 	padding: 0;
 	overflow: hidden;
 	background-color: #333;
+	height: 7.5vh;
 }
 
 .navbar li {
@@ -44,7 +45,7 @@ body {
 .gamerooms {
 	float: left;
 	width: 75%;
-	height: 100vh;
+	height: 92.5vh;
 	background: #ccc;
 	overflow: auto;
 }
@@ -112,7 +113,7 @@ body {
 	float: left;
 	width: 25%;
 	background-color: #f1f1f1;
-	height: 100vh;
+	height: 92.5vh;
 	text-align: center;
 }
 
@@ -152,25 +153,26 @@ body {
 	align-items: center;
 	justify-content: center;
 	background: #ccc;
-	height: 100vh;
+	height: 80vh;
 	position: relative;
 }
 
 .game section .seats {
 	display: grid;
 	position: absolute;
-	height: 650px;
-    width: 800px;
+	height: 510px;
+    width: 540px;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
 
 
 .game .chair {
-	height: 100px;
-	width: 100px;
+	height: 80px;
+	width: 80px;
 	border-radius: 50%;
 	background-color: grey;
+	border: 1px solid black;
 	display: inline-block;
 	text-align: center;
 	justify-content: center;
@@ -178,6 +180,22 @@ body {
 }
 
 .game .chair .chair-name {
+	padding-top: 30%;
+}
+
+.game .chair-empty {
+	height: 80px;
+	width: 80px;
+	border-radius: 50%;
+	background-color: orange;
+	border: 1px solid black;
+	display: inline-block;
+	text-align: center;
+	justify-content: center;
+	margin: 5px;
+}
+
+.game .chair-empty .chair-name {
 	padding-top: 40%;
 }
 
@@ -231,8 +249,8 @@ body {
 
 .game .table {
 	background-color: #4aad4a;
-	height: 400px;
-	width: 700px;
+	height: 300px;
+	width: 400px;
 	border-radius: 25%;
 	margin: 0 auto;
 	border: 1em solid black;
@@ -245,6 +263,57 @@ body {
 .game .board {
 	position: relative;
 }
+
+.game .responses {
+	height: 12.5vh;
+	background-color: #333333;
+}
+
+.game .responses ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.game .responses li {
+	float: left;
+	font-size: 24px;
+}
+
+.game .responses li button {
+	font-family: Arial;
+	margin: 0px;
+	font-size: 18px;
+	display: block;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	transition: background-color 150ms ease-in-out;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+
+.game .responses li input {
+	margin: 0px;
+	display: block;
+	text-align: center;
+	padding: 14px 0px;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+
+.game .responses li:last-child, .game .responses li:nth-last-child(2) {
+	float: right;
+	margin-right: 10px;
+}
+
+.game .responses li a:hover {
+	cursor: pointer;
+	background-color: #111;
+}
+
+
 
 .game .card {
 	border: .2em solid black;
@@ -333,4 +402,8 @@ body {
 
 .authentication button[type=submit]:hover {
   background-color: #45a049;
+}
+
+.authentication .backlink {
+	float: right;
 }
