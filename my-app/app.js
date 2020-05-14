@@ -62,6 +62,11 @@ app.use('/games', gamesRouter);
 app.use('/api/games', apiRouter);
 
 
+var server = require('http').Server(app);
+var io = require('socket.io').listen(server);
+io.on('connection' , socket => {
+  console.log(' New WS conncection .....');
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,10 +5,15 @@
  var db = require('../../db');
  /* GET home page. */
  router.get('/:id', function(request, response) {
- 	const { id } = request.params;
-console.log(id)
-     // response.render('games', { id });
-     response.render('games', {id:id})
+     if(request.isAuthenticated()) {
+        
+     const { id } = request.params;
+     var {user} = request ;
+     username = user['username'];     // response.render('games', { id });
+     console.log(username)
+
+     response.render('games', {id:id, username:username})
+     }
  });
  
  
