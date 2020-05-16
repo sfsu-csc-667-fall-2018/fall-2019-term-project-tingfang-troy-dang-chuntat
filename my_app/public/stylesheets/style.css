@@ -109,15 +109,15 @@ body {
 	clear: both;
 }
 
-.buttons article {
+.rightArticle article .buttons {
 	float: left;
 	width: 25%;
 	background-color: #f1f1f1;
-	height: 92.5vh;
+	height: 46.25vh;
 	text-align: center;
 }
 
-.buttons button {
+.rightArticle article .buttons button {
 	background-color: #4eb572;
 	border: 1px solid green;
 	color: white;
@@ -126,21 +126,42 @@ body {
 	width: 50%;
 	display: block;
 	font-size: 24px;
-	margin: 80px auto;
+	margin: 50px auto;
 	transition: background-color 150ms ease-in-out;
 }
 
-.buttons button a {
+.rightArticle article .buttons button a {
 	text-decoration: none;
 	color: inherit;
 }
 
-.buttons button:hover {
+.rightArticle article .buttons button:hover {
 	background-color: #88cda0;
 }
 
-.buttons button:first-child {
+.rightArticle article .buttons button:first-child {
 	margin-bottom: 2em;
+}
+
+.rightArticle article .log {
+	float: left;
+	width: 25%;
+	background-color: #444444;
+	height: 46.25vh;
+	text-align: center;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.rightArticle article .log .logContent div {
+	color: white;
+	border-bottom: 1px solid #757575;
+}
+
+.rightArticle article .log .logContent div:first-child {
+	margin-top: 5px;
+	border-top: 1px solid #757575;
 }
 
 /* ---GAME ROOM--- */
@@ -155,6 +176,8 @@ body {
 	background: #ccc;
 	height: 80vh;
 	position: relative;
+	width: 75%;
+	float: left;
 }
 
 .game section .seats {
@@ -264,9 +287,32 @@ body {
 	position: relative;
 }
 
+.game article .log {
+	float: left;
+	width: 25%;
+	background-color: #444444;
+	height: 80vh;
+	text-align: center;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.game article .log .logContent div {
+	color: white;
+	border-bottom: 1px solid #757575;
+}
+
+.game article .log .logContent div:first-child {
+	margin-top: 5px;
+	border-top: 1px solid #757575;
+}
+
 .game .responses {
 	height: 12.5vh;
 	background-color: #333333;
+	width: 100vw;
+	float: left;
 }
 
 .game .responses ul {
