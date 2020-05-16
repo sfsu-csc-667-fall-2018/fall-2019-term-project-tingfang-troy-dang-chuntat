@@ -183,8 +183,8 @@ body {
 .game section .seats {
 	display: grid;
 	position: absolute;
-	height: 510px;
-    width: 540px;
+	height: 70vh;
+    width: 50vw;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
@@ -192,14 +192,15 @@ body {
 
 .game .chair {
 	height: 80px;
-	width: 80px;
-	border-radius: 50%;
-	background-color: grey;
-	border: 1px solid black;
-	display: inline-block;
-	text-align: center;
-	justify-content: center;
-	margin: 5px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: grey;
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    margin: 5px;
+    position: relative;
 }
 
 .game .chair .chair-name {
@@ -272,8 +273,8 @@ body {
 
 .game .table {
 	background-color: #4aad4a;
-	height: 300px;
-	width: 400px;
+	height: 35vh;
+	width: 40vw;
 	border-radius: 25%;
 	margin: 0 auto;
 	border: 1em solid black;
@@ -359,8 +360,6 @@ body {
 	background-color: #111;
 }
 
-
-
 .game .card {
 	border: .2em solid black;
 	border-radius: 10%;
@@ -385,6 +384,43 @@ body {
 	margin: 0;
 	font-size: 1.5em;
 }
+
+.game .chair .card {
+	height: 45px;
+	width: 36px;
+}
+
+.game .chair .cardBox {
+	width: 95px;
+    position: absolute;
+    bottom: -36px;
+    left: -5px;
+    right: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.game .chair .card .card-text, 
+.game .chair .card .card-img {
+	font-size: 1em;
+}
+
+.game .chair .card .card-img {
+	padding-left: 5px;
+	margin-top: -4px;
+}
+
+.game .card-blank {
+    border: .2em solid black;
+    border-radius: 10%;
+    height: 45px;
+    width: 36px;
+    margin-right: 5px;
+    float: left;
+    background-color: #ff9800;
+}
+
 
 .game .black {
 	color: black;
