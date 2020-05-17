@@ -4,11 +4,11 @@ block content
 	div.navbar
 		ul
 			li
-				a(href="/lobby/1") Texas Hold 'em 
+				a(href="/lobby/0") Texas Hold 'em 
 			li 
 				p Room #{id}
 			li 
-				a(href="/users/login") Log In
+				p Welcome #{username}
 
 	div.game
 		section
@@ -52,6 +52,7 @@ block content
 				div.player5
 					div.chair-empty
 						div.chair-name SIT
+						div.cardBox
 				div.player6
 					div.chair
 						div.chair-name Person 6
@@ -102,6 +103,9 @@ block content
 						p Player 4: Why did I fold.
 					div
 						p Player 6: When is player 5 joining?
+			form()
+				div.chatbox
+					input(type='text')
 
 		div.responses
 			ul
@@ -114,8 +118,8 @@ block content
 				li 
 					button(type='submit') CALL ANY
 				li
-					button(type='submit') RAISE X
+					button(type='submit') RAISE 10
 				li
-					input(type='range' min="1" max="100" value="1")
+					input(type='text', value="10")
 
 

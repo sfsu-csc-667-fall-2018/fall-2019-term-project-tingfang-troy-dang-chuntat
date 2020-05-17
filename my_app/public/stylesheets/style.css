@@ -115,6 +115,7 @@ body {
 	background-color: #f1f1f1;
 	height: 46.25vh;
 	text-align: center;
+	border: 1px solid black;
 }
 
 .rightArticle article .buttons button {
@@ -147,7 +148,7 @@ body {
 	float: left;
 	width: 25%;
 	background-color: #444444;
-	height: 46.25vh;
+	height: 41.25vh;
 	text-align: center;
 	overflow-y: auto;
 	display: flex;
@@ -162,6 +163,22 @@ body {
 .rightArticle article .log .logContent div:first-child {
 	margin-top: 5px;
 	border-top: 1px solid #757575;
+}
+
+.rightArticle article form .chatbox {
+	float: left;
+	width: 25%;
+	background-color: #444444;
+	height: 5vh;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.rightArticle article form .chatbox input {
+	flex-grow: 0.9;
+    font-size: 16px;
 }
 
 /* ---GAME ROOM--- */
@@ -292,7 +309,7 @@ body {
 	float: left;
 	width: 25%;
 	background-color: #444444;
-	height: 80vh;
+	height: 75vh;
 	text-align: center;
 	overflow-y: auto;
 	display: flex;
@@ -307,6 +324,22 @@ body {
 .game article .log .logContent div:first-child {
 	margin-top: 5px;
 	border-top: 1px solid #757575;
+}
+
+.game article form .chatbox {
+	float: left;
+	width: 25%;
+	background-color: #444444;
+	height: 5vh;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.game article form .chatbox input {
+	flex-grow: 0.9;
+    font-size: 16px;
 }
 
 .game .responses {
@@ -343,11 +376,13 @@ body {
 
 .game .responses li input {
 	margin: 0px;
-	display: block;
-	text-align: center;
-	padding: 14px 0px;
-	margin-top: 15px;
-	margin-left: 10px;
+    display: block;
+    text-align: center;
+    padding: 14px 0px;
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size: 14px;
+    width: 45px;
 }
 
 .game .responses li:last-child, .game .responses li:nth-last-child(2) {
@@ -484,8 +519,4 @@ body {
 
 .authentication button[type=submit]:hover {
   background-color: #45a049;
-}
-
-.authentication .backlink {
-	float: right;
 }
