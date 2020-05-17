@@ -1,12 +1,42 @@
 extends layout
 
 block content
+	script(src="/socket.io/socket.io.js")
+	script.
+		var socket = io();
 	div.navbar
 		ul
 			li
 				a(href="/") Texas Hold 'em
 			li 
 				a(href="/logout") Log out
+
+	
+	//- div.gamerooms
+	//- 	section
+	//- 		div.pageSwitch
+	//- 			- var next = +page+1
+	//- 			- var last = +page-1
+	//- 			- var lastPage = Math.floor(+rooms.length/9)
+	//- 			if page > 0
+	//- 				a(href="/lobby/" + last) ←
+	//- 			if page < lastPage
+	//- 				a(href="/lobby/" + next) →
+
+	//- 			ul
+
+	//- 				//calculate how many rooms to list out
+	//- 				- var lastRoom = +rooms.length
+	//- 				if lastRoom > +page*9+9
+	//- 					- lastRoom = +page*9+9
+
+	//- 				//Spawn rooms (For Loop)
+	//- 				- for (var i = +page*9; i < lastRoom; ++i) {
+	//- 					li = rooms[i]
+	//- 						p  Game Room #{rooms[i].id}
+	//- 						p (0/8)
+	//- 						a(href="api/games/#{rooms[i].id}" + rooms[i].id) Join
+	//- 				- }
 
 	div.gamerooms
 		section Welcome #{username}
@@ -17,10 +47,37 @@ block content
 						p (0/8)
 						a(href="api/games/#{val.id}") Join
 
-	div.buttons
+	div.rightArticle
 		article
-			button
-				a(href="games/create") Play Now
-			button 
-				a(href="games/create") Create room
+			div.buttons
+				button
+					a(href="/games/create") Play Now
+				button 
+					a(href="/games/create") Create Now
+			div.log
+				div.logContent
+					div
+						p Player 1 raises $20
+					div
+						p Player 2 folded
+					div
+						p Player 3 folded
+					div
+						p Player 1 won $23
+					div
+						p Player 1: Thank you!
+					div
+						p Player 2: ugh...
+					div
+						p Player 3: ;-;
+					div
+						p Player 1 won $23
+					div
+						p Player 1: Thank you!
+					div
+						p Player 2: ugh...
+					div
+						p Player 3: ;-;
+
+	
 

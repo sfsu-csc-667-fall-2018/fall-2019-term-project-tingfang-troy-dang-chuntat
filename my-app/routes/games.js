@@ -35,10 +35,15 @@ router.get('/create', function(req,res, next) {
 })
 
 router.get('/quit', function(request, response) {
+	if( req.isAuthenticated()) {
+
 	var {user} = request
 	username = user['username']
 	db.any(`DELETE  FROM games WHERE creator = '${username}'`)
 	.then (response.redirect('/lobby'))
+	} 
+	else 
+	console.log("something wrong with quit")
 });
 
 

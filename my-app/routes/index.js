@@ -1,6 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path');
+var path = require('path')
+, http = require('http');
+// var app = require('express')();
+// var http = require('http').createServer(app);
+// var io = require('socket.io')(http);
+
+
+// io.on('connection', (socket) => {
+// 	console.log('a user connected');
+//   });
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

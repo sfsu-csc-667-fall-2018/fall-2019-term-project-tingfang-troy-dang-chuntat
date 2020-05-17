@@ -13,7 +13,16 @@ router.get('/', function(req, res, next) {
     db.any(`SELECT * FROM games `)
       .then ( result => {
         console.log(result)
+
         res.render('lobby', {username : username, rooms:result})
+        // req.io.sockets.emit('message', message => {
+        //   console.log(message);
+        // }); 
+        // var io = req.app.get('socketio');
+
+        // io.emit('message', 'A user has leave the lobby');
+
+
       })
     .catch (
       

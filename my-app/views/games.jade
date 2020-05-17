@@ -9,62 +9,110 @@ block content
 				a(href="/games/quit") Quit
 
 	div.game
-		section
-			div.seats
-				div.player1
-					div.chair
-						div.chair-name #{username}
-						div.chair-money $100
-				div.player2
-					div.chair
-						div.chair-name Person 2
-						div.chair-money $100
-				div.player3
-					div.chair
-						div.chair-name Person 3
-						div.chair-money $100
-				div.player4
-					div.chair
-						div.chair-name Person 4
-						div.chair-money $100
-				div.player5
-					div.chair
-						div.chair-name Person 5
-						div.chair-money $100
-				div.player6
-					div.chair
-						div.chair-name Person 6
-						div.chair-money $100
-			div.table
-				div.board
-					// Spade -> ♠️; Heart -> ❤️; Club -> ♣️; Diamond -> ♦️
-					div.card
-						p.card-text.black A
-						p.card-img.black ♠️
-					div.card
-						p.card-text.black K
-						p.card-img.red ❤️
-					div.card
-						p.card-text.black Q
-						p.card-img.black ♣️
-					div.card
-						p.card-text.black J
-						p.card-img.red ♦️
-					div.card
-						p.card-text.black 10
-						p.card-img.red ♦️
-		div.responses
-					ul
-						li
-							button(type='submit') FOLD
-						li
-							button(type='submit') CHECK
-						li 
-							button(type='submit') CALL X
-						li 
-							button(type='submit') CALL ANY
-						li
-							button(type='submit') RAISE X
-						li
-							input(type='range' min="1" max="100" value="1")
-	
+			section
+				div.seats
+					div.player1
+						div.chair
+							div.chair-name #{username}
+							div.chair-money $100
+							div.cardBox
+								div.card
+									img.image(src='/images/PNG/2C.png' style ='height:60px ' )
+								div.card
+									p.card-text.black Q
+									p.card-img.black ♠️
+					div.player2
+						div.chair
+							div.chair-name Person 2
+							div.chair-money $100
+							div.cardBox
+								div.card
+									p.card-text.black 10
+									p.card-img.black ♠️
+								div.card
+									p.card-text.black 9
+									p.card-img.black ♠️
+					div.player3
+						div.chair
+							div.chair-name Person 3
+							div.chair-money $100
+							div.cardBox
+								div.card-blank
+								div.card-blank
+					div.player4
+						div.chair
+							div.chair-name Person 4
+							div.chair-money $100
+							div.cardBox
+								div.card-blank
+								div.card-blank
+					div.player5
+						div.chair-empty
+							div.chair-name SIT
+					div.player6
+						div.chair
+							div.chair-name Person 6
+							div.chair-money $100
+							div.cardBox
+								div.card-blank
+								div.card-blank
+				div.table
+					div.board
+						// Spade -> ♠️; Heart -> ❤️; Club -> ♣️; Diamond -> ♦️
+						div.card
+							p.card-text.black A
+							p.card-img.black ♠️
+						div.card
+							p.card-text.black K
+							p.card-img.red ❤️
+						div.card
+							p.card-text.black Q
+							p.card-img.black ♣️
+						div.card
+							p.card-text.black J
+							p.card-img.red ♦️
+						div.card
+							img.image(src='/images/PNG/2C.png' style ='height:70px' )
+			
+
+							
+			article
+				div.log
+					div.logContent
+						div
+							p Player 1 raises $20
+						div
+							p Player 2 folded
+						div
+							p Player 3 folded
+						div
+							p Player 4 folded
+						div
+							p Player 6 folded
+						div
+							p Player 1 won $23
+						div
+							p Player 1: Thank you!
+						div
+							p Player 2: ugh...
+						div
+							p Player 3: ;-;
+						div
+							p Player 4: Why did I fold.
+						div
+							p Player 6: When is player 5 joining?
+
+			div.responses
+				ul
+					li
+						button(type='submit') FOLD
+					li
+						button(type='submit') CHECK
+					li 
+						button(type='submit') CALL X
+					li 
+						button(type='submit') CALL ANY
+					li
+						button(type='submit') RAISE X
+					li
+						input(type='range' min="1" max="100" value="1")

@@ -12,10 +12,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var request = require('request');
 var logger = require('morgan');
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 var bodyParser = require('body-parser');
-// var passportConfig = require('./config/passport')
-// const initializePassport = require("./config/passport");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -61,12 +59,12 @@ app.use('/signup', signupRouter);
 app.use('/games', gamesRouter);
 app.use('/api/games', apiRouter);
 
-
-var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
-io.on('connection' , socket => {
-  console.log(' New WS conncection .....');
-})
+//io 
+// var server = require('http').Server(app);
+// var io = require('socket.io').listen(server);
+// io.on('connection' , socket => {
+//   console.log(' New WS conncection .....');
+// })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -91,5 +89,7 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
   done(null, user);
 });
+
+
 
 module.exports = app;
