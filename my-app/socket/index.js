@@ -8,8 +8,10 @@ const io = socketIo( server )
   var bitches_in_lobby = []
   var rooms = []
 var db = require ('../db')
+
   io.on( 'connection', socket => {
 
+    var numClients = {};
 
     socket.on("joinLobby", function(username){
         socket.room ='lobby'
@@ -29,7 +31,6 @@ var db = require ('../db')
         }
     )
 
-
     socket.on("joinGame", function(username, id){
         // id = id.toString();
         // socket.room = id
@@ -37,11 +38,33 @@ var db = require ('../db')
         // console.log("Bitch joined lobby " + username)
         bitches_in_lobby.push(username)
         // console.log(bitches_in_lobby)
+
         socket.join(id)
-        socket.emit('updateUserGame',  'you have connected to room');
-        socket.broadcast.to(id).emit('updateUserGame',  username + ' has connected');
+
+
+        setTimeout(function(){
+        
+            db.any(`SELECT username FROM "user-room" WHERE "roomID" = '${id}' `)
+                .then( results => {
+                    console.log("print user room")
+                    console.log(results);
+                    socket.emit('updateRooms', results);
+
+                    socket.emit('updateUserGame',  'you have connected to room');
+                    socket.emit('loadUserSeat', results )
+                    var clients = io.sockets.adapter.rooms[id].sockets;   
+                    //to get the number of clients
+                    var numClients = (typeof clients !== 'undefined') ? Object.keys(clients).length : 0;
+                    console.log(numClients)
+                    socket.emit('updateUserSeat', username , numClients )
+                    socket.broadcast.to(id).emit('updateUserSeat',  username , numClients);
+
+                    socket.broadcast.to(id).emit('updateUserGame',  username + ' has connected');
+                 })
+        }, 1000);
+
         }
-    )
+        )
 
     socket.on('sendChat', function (data) {
         // we tell the client to execute 'updatechat' with 2 parameters
@@ -50,21 +73,17 @@ var db = require ('../db')
 
 
 	socket.on('switchRoom', function(newroom){
-		// leave the current room (stored in session)
 		socket.leave(socket.room);
-		// join new room, received as function parameter
 		socket.join(newroom);
 		socket.emit('updateUser',  'you have connected to '+ newroom);
-        // sent message to OLD room
-
         if (newroom == "lobby" ) {
+            numClients[socket.room]--;
             socket.broadcast.to(socket.room).emit('updateUserGame',  socket.username+' has left this room');
-
         }
         else {
+        
         socket.broadcast.to(socket.room).emit('updateUser',  socket.username+' has left this room');
         }
-		// update socket session room title
 		socket.room = newroom;
 		socket.broadcast.to(newroom).emit('updateUser',  socket.username+' has joined ' + newroom);
 		// socket.emit('updaterooms', rooms, newroom);
@@ -83,12 +102,6 @@ var db = require ('../db')
 
         });
     
-    // socket.on('CreateRoom', function(id, username){
-    //         socket.join(id) // Creates room1
-    //         rooms.push(id) // Creates List names of rooms
-    //         console.log("We Joined Room: " + id)
-    //         socket.broadcast.to(id).emit('joinedUser', "User has joined")
-    // });
 
 	socket.on('disconnect', function(){
 		// remove the username from global usernames list

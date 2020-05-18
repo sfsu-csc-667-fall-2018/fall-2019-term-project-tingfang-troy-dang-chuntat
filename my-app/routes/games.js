@@ -34,16 +34,38 @@ router.get('/create', function(req,res, next) {
 
 })
 
-router.get('/quit', function(request, response) {
+router.get('/:id/quit', function(request, response) {
 	if( request.isAuthenticated()) {
-
+	var { id } = request.params;
+	console.log(id)
 	var {user} = request
 	username = user['username']
-	db.any(`DELETE  FROM games WHERE creator = '${username}'`)
-	.then (response.redirect('/lobby'))
+	db.any(`DELETE  FROM "user-room" WHERE username = '${username}' AND "roomID" = '${id}'`)
+	.then ( () => { 
+		db.any(`SELECT COUNT(*)  FROM "user-room" WHERE "roomID" = '${id}' `)
+		.then ( result => {
+			console.log ("print count when quit")
+			console.log(result);
+			console.log(result[0].count);
+			var count = result[0].count.toString()
+			console.log(count);
+
+			if ( count == "0")  {
+			console.log("deleting a room")
+			db.any(`DELETE  FROM games WHERE  id = '${id}'`)
+			.then (response.redirect('/lobby'))
+			}
+			else {
+				response.redirect('/lobby')
+			}
+
+		})
+
+	})
+
 	} 
 	else 
-	console.log("something wrong with quit")
+	response.json("something wrong with quit authentication")
 });
 
 

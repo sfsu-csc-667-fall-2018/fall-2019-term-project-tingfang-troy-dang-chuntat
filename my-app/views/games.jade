@@ -4,9 +4,11 @@ block content
 	script(src="/socket.io/socket.io.js")
 	script.
 		var users = [];
+		var numClients = {};
 		var socket = io();
 		socket.on('connect', () => {
 		console.log("user goes to the room")
+		
 		socket.emit("joinGame", "#{username}" , "#{id}" )
 		socket.emit("switchRoom", "#{id}" )
 
@@ -15,6 +17,31 @@ block content
 
 		socket.on('updateChat', function (username, data) {
 		$('#conversation').append('<p>'+username + ':' + data + '<p>'); });
+
+
+
+		socket.on('loadUserSeat', function (data) {
+			for ( var i =0 ;i < data.length ; i ++) {
+				var seatNum = i + 1
+				seatNum = seatNum.toString();
+			console.log(data[i].username)  
+			$('#seat' + seatNum ).html('<p>'+ data[i].username + '<p>');
+
+		}
+		});
+
+
+		socket.on('updateUserSeat', function (username, userCount) {
+		if(userCount == 1)
+			$('#seat1').html('<p>'+ username + '<p>');
+		if(userCount == 2)
+			$('#seat2').html('<p>'+ username + '<p>');
+		if(userCount == 3)
+			$('#seat3').html('<p>'+ username + '<p>');
+		if(userCount == 4)
+			$('#seat4').html('<p>'+ username + '<p>'); 
+		
+		});
 
 
 		} );
@@ -31,7 +58,7 @@ block content
 		$('#quitRoom').click( function() {
 		console.log("I click")
 		// tell server to execute 'sendchat' and send along one parameter
-		$(location).attr('href', '/games/quit')
+		$(location).attr('href', '/games/#{id}/quit')
 		socket.emit("switchRoom", "lobby" )
 
 		});  
@@ -51,7 +78,8 @@ block content
 				div.seats
 					div.player1
 						div.chair
-							div.chair-name #{username}
+							div.chair-name 
+								p#seat1
 							div.chair-money $100
 							div.cardBox
 								div.card
@@ -59,37 +87,42 @@ block content
 								div.card
 									p.card-text.black Q
 									p.card-img.black ♠️
+					//- div.player2
+					//- 	div.chair
+					//- 		div.chair-name 
+					//- 			p#seat2
+
+					//- 		div.chair-money $100
+					//- 		div.cardBox
+					//- 			div.card
+					//- 				p.card-text.black 10
+					//- 				p.card-img.black ♠️
+					//- 			div.card
+					//- 				p.card-text.black 9
+					//- 				p.card-img.black ♠️
 					div.player2
 						div.chair
-							div.chair-name Person 2
+							div.chair-name 
+								p#seat2
 							div.chair-money $100
 							div.cardBox
-								div.card
-									p.card-text.black 10
-									p.card-img.black ♠️
-								div.card
-									p.card-text.black 9
-									p.card-img.black ♠️
+								div.card-blank
+								div.card-blank
 					div.player3
 						div.chair
-							div.chair-name Person 3
+							div.chair-name 
+								p#seat3
 							div.chair-money $100
 							div.cardBox
 								div.card-blank
 								div.card-blank
+					//- div.player5
+					//- 	div.chair-empty
+					//- 		div.chair-name SIT
 					div.player4
 						div.chair
-							div.chair-name Person 4
-							div.chair-money $100
-							div.cardBox
-								div.card-blank
-								div.card-blank
-					div.player5
-						div.chair-empty
-							div.chair-name SIT
-					div.player6
-						div.chair
-							div.chair-name Person 6
+							div.chair-name 
+								p#seat4
 							div.chair-money $100
 							div.cardBox
 								div.card-blank
@@ -119,10 +152,10 @@ block content
 					div.logContent
 						div
 							p#conversation
-				div.chatbox
-					label(for='message')
-					input(type='message', name='message', id = 'data')
-					button(type='submit' ,id ='datasend') send
+					div.chatbox
+						label(for='message')
+						input(type='message', name='message', id = 'data')
+						button(type='submit' ,id ='datasend') send
 
 			div.responses
 				ul

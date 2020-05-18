@@ -15,17 +15,18 @@ block content
 
 		socket.on('updateRooms', function (rooms) {
 		//- $('#conversation').append('<p>'+username + ':' + data + '<p>'); 
-		console.log(rooms)
 		var string = "";
 		for ( var i = 0 ;i < rooms.length; i++ ) {
 		console.log(rooms[i])
-		string += "<li><p>" + rooms[i].id + "<p> <p>(0/8))</p> <a href='/api/games/" + rooms[i].id + "'>Join</a></li>"
+		//- string += "<li><p>" + rooms[i].id + "<p> <p>(0/8))</p> <a href='/api/games/" + rooms[i].id + "'>Join</a></li>"
+		string += "<li><p>" + rooms[i].id + "<p> <a href='/api/games/" + rooms[i].id + "'>Join</a></li>"
 		console.log(string)
 		}
 		$("#rooms").html(string)
 
 		});
 		});
+
 
 		$(function(){
 		// when the client clicks SEND
@@ -41,6 +42,7 @@ block content
 		// tell server to execute 'sendchat' and send along one parameter
 		$(location).attr('href', '/games/create')
 		socket.emit('createRoom', "#{username}");
+
 
 		}); 
 		
@@ -95,8 +97,6 @@ block content
 	div.rightArticle
 		article
 			div.buttons
-				button
-					a(href="/games/create") Play Now
 				button 
 					a( id ="createRoom") Create Now
 			div.log
