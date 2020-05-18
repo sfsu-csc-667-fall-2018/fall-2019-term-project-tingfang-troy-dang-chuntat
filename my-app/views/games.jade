@@ -6,47 +6,45 @@ block content
 		var users = [];
 		var socket = io();
 		socket.on('connect', () => {
-		console.log("AAA");
-		socket.emit("CreateRoom", "#{id}",  "#{username}")
-		socket.on('joinedUser',function(data) {
-		console.log("hhey")
-		//-  document.body.innerHTML = '';
-		//-  document.write(data);
-		//- console.log(io.sockets.adapter.rooms['test'].length);
-		//- console.log(io.sockets.clients("room-5"))
-		console.log(data)}  ) });
-	
-		
+		console.log("user goes to the room")
+		socket.emit("joinGame", "#{username}" , "#{id}" )
+		socket.emit("switchRoom", "#{id}" )
 
-		socket.on('number',function(data) {
-		//-  document.body.innerHTML = '';
-		//-  document.write(data);
-		console.log(data)
-		//- console.log(io.sockets.clients("room-5"))
-		$("#number").text(data);});
+		socket.on('updateUserGame', function (data) {
+		$('#conversation').append('<p>' + data + '<p>'); });
 
-		socket.on('username',function(data) {
-		//-  document.body.innerHTML = '';
-		//-  document.write(data);
-		
-		users.push(data)
-		console.log(users) })
-		//- console.log(io.sockets.clients("room-5"))
-		//- $("#nu").texappt(data);});
+		socket.on('updateChat', function (username, data) {
+		$('#conversation').append('<p>'+username + ':' + data + '<p>'); });
 
-		//- socket.on('items',function(data) {
-		//- //-  document.body.innerHTML = '';
-		//- //-  document.write(data);
-		//- console.log(data)});
+
+		} );
+
+		$(function(){
+		// when the client clicks SEND
+		$('#datasend').click( function() {
+			var message = $('#data').val();
+			$('#data').val('');
+			// tell server to execute 'sendchat' and send along one parameter
+			socket.emit('sendChat', message);
+		});
+
+		$('#quitRoom').click( function() {
+		console.log("I click")
+		// tell server to execute 'sendchat' and send along one parameter
+		$(location).attr('href', '/games/quit')
+		socket.emit("switchRoom", "lobby" )
+
+		});  
+		});
 
 		
 
 	div.navbar
 		ul
 			li 
-				p#room 
+				p Game room #{id} 
 			li 
-				a(href="/games/quit") Quit
+				a( id ="quitRoom") Quit
 
 	div.game
 			section
@@ -120,27 +118,11 @@ block content
 				div.log
 					div.logContent
 						div
-							p Player 1 raises $20
-						div
-							p Player 2 folded
-						div
-							p Player 3 folded
-						div
-							p Player 4 folded
-						div
-							p Player 6 folded
-						div
-							p Player 1 won $23
-						div
-							p Player 1: Thank you!
-						div
-							p Player 2: ugh...
-						div
-							p Player 3: ;-;
-						div
-							p Player 4: Why did I fold.
-						div
-							p#number
+							p#conversation
+				div.chatbox
+					label(for='message')
+					input(type='message', name='message', id = 'data')
+					button(type='submit' ,id ='datasend') send
 
 			div.responses
 				ul

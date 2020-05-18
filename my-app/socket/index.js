@@ -9,23 +9,37 @@ const io = socketIo( server )
   var rooms = []
 var db = require ('../db')
   io.on( 'connection', socket => {
-    console.log( 'client connected' )
+
+
     socket.on("joinLobby", function(username){
         socket.room ='lobby'
         socket.username = username
         // console.log("Bitch joined lobby " + username)
         bitches_in_lobby.push(username)
-        console.log(bitches_in_lobby)
+        // console.log(bitches_in_lobby)
         socket.join('lobby')
         socket.emit('updateUser',  'you have connected to lobby');
         socket.broadcast.to('lobby').emit('updateUser',  username + ' has connected');
         db.any(`SELECT * FROM games `)
         .then( results => {
-            console.log(results);
             socket.emit('updateRooms', results);
 
 
         })
+        }
+    )
+
+
+    socket.on("joinGame", function(username, id){
+        // id = id.toString();
+        // socket.room = id
+        socket.username = username
+        // console.log("Bitch joined lobby " + username)
+        bitches_in_lobby.push(username)
+        // console.log(bitches_in_lobby)
+        socket.join(id)
+        socket.emit('updateUserGame',  'you have connected to room');
+        socket.broadcast.to(id).emit('updateUserGame',  username + ' has connected');
         }
     )
 
@@ -41,11 +55,18 @@ var db = require ('../db')
 		// join new room, received as function parameter
 		socket.join(newroom);
 		socket.emit('updateUser',  'you have connected to '+ newroom);
-		// sent message to OLD room
-		socket.broadcast.to(socket.room).emit('updateUser',  socket.username+' has left this room');
+        // sent message to OLD room
+
+        if (newroom == "lobby" ) {
+            socket.broadcast.to(socket.room).emit('updateUserGame',  socket.username+' has left this room');
+
+        }
+        else {
+        socket.broadcast.to(socket.room).emit('updateUser',  socket.username+' has left this room');
+        }
 		// update socket session room title
 		socket.room = newroom;
-		socket.broadcast.to(newroom).emit('updateUser',  socket.username+' has joined this room');
+		socket.broadcast.to(newroom).emit('updateUser',  socket.username+' has joined ' + newroom);
 		// socket.emit('updaterooms', rooms, newroom);
     });
     
@@ -54,17 +75,11 @@ var db = require ('../db')
         // db.any(`SELECT * FROM games WHERE creator=$1 Order By "createdAt" Desc Limit 1`, [data])
 
         setTimeout(function(){
-
             db.any(`SELECT * FROM games `)
             .then( results => {
-                console.log(results);
-                socket.broadcast.to('lobby').emit('updateRooms', results);
-    
-    
+                socket.broadcast.to('lobby').emit('updateRooms', results);  
             })
-
-
-        }, 3000);
+        }, 2000);
 
         });
     
