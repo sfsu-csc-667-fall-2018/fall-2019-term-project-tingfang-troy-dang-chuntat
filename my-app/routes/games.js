@@ -25,7 +25,6 @@ router.get('/create', function(req,res, next) {
 	
 
 	var id = result[result.length -1].id
-	  console.log("AAAA", id)
 	  res.redirect('/api/games/' + id) } ))
   .catch (
 	  error => {console.log(error)}

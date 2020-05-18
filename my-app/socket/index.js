@@ -2,12 +2,12 @@ const socketIo = require( 'socket.io' )
 const { USER_JOINED, MESSAGE_SEND } = require( '../src/constants/events' )
 
 const init = ( app, server ) => {
-  const io = socketIo( server )
+const io = socketIo( server )
 
   app.set( 'io', io )
   var bitches_in_lobby = []
   var rooms = []
-
+var db = require ('../db')
   io.on( 'connection', socket => {
     console.log( 'client connected' )
     socket.on("joinLobby", function(username){
@@ -19,14 +19,54 @@ const init = ( app, server ) => {
         socket.join('lobby')
         socket.emit('updateUser',  'you have connected to lobby');
         socket.broadcast.to('lobby').emit('updateUser',  username + ' has connected');
+        db.any(`SELECT * FROM games `)
+        .then( results => {
+            console.log(results);
+            socket.emit('updateRooms', results);
+
+
+        })
         }
     )
 
     socket.on('sendChat', function (data) {
         // we tell the client to execute 'updatechat' with 2 parameters
-        console.log("AAAAA" + socket.room)
 		io.sockets.in(socket.room).emit('updateChat', socket.username, data);
     });
+
+
+	socket.on('switchRoom', function(newroom){
+		// leave the current room (stored in session)
+		socket.leave(socket.room);
+		// join new room, received as function parameter
+		socket.join(newroom);
+		socket.emit('updateUser',  'you have connected to '+ newroom);
+		// sent message to OLD room
+		socket.broadcast.to(socket.room).emit('updateUser',  socket.username+' has left this room');
+		// update socket session room title
+		socket.room = newroom;
+		socket.broadcast.to(newroom).emit('updateUser',  socket.username+' has joined this room');
+		// socket.emit('updaterooms', rooms, newroom);
+    });
+    
+    socket.on('createRoom', function (data) {
+        // we tell the client to execute 'updatechat' with 2 parameters
+        // db.any(`SELECT * FROM games WHERE creator=$1 Order By "createdAt" Desc Limit 1`, [data])
+
+        setTimeout(function(){
+
+            db.any(`SELECT * FROM games `)
+            .then( results => {
+                console.log(results);
+                socket.broadcast.to('lobby').emit('updateRooms', results);
+    
+    
+            })
+
+
+        }, 3000);
+
+        });
     
     // socket.on('CreateRoom', function(id, username){
     //         socket.join(id) // Creates room1
