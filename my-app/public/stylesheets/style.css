@@ -162,9 +162,23 @@ body {
 	border-top: 1px solid #757575;
 }
 
-/* ---GAME ROOM--- */
-.game {
+.rightArticle article  .chatbox {
+	float: left;
+	width: 25%;
+	background-color: #444444;
+	height: 5vh;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: center;
 }
+
+.rightArticle article  .chatbox input {
+	flex-grow: 0.9;
+    font-size: 16px;
+}
+/* ---GAME ROOM--- */
+
 
 .game section {
 	display: flex;

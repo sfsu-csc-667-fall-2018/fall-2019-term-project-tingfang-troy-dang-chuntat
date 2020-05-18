@@ -4,10 +4,29 @@ block content
 	script(src="/socket.io/socket.io.js")
 	script.
 		var socket = io();
+		socket.on('connect', () => {
+		socket.emit("joinLobby", "#{username}" )
+
+		socket.on('updateUser', function (data) {
+		$('#conversation').append('<p>' + data + '<p>'); });
+
+		socket.on('updateChat', function (username, data) {
+		$('#conversation').append('<p>'+username + ':' + data + '<p>'); });
+		}  );
+
+		$(function(){
+		// when the client clicks SEND
+		$('#datasend').click( function() {
+			var message = $('#data').val();
+			$('#data').val('');
+			// tell server to execute 'sendchat' and send along one parameter
+			socket.emit('sendChat', message);
+		}); });
+
 	div.navbar
 		ul
 			li
-				a(href="/") Texas Hold 'em
+				a(href="/") Texas Hold em
 			li 
 				a(href="/logout") Log out
 
@@ -39,13 +58,14 @@ block content
 	//- 				- }
 
 	div.gamerooms
-		section Welcome #{username}
+		
+		section Welcome #{username}  
 			ul
 				for val in rooms
 					li 
 						p Game Room #{val.id}
 						p (0/8)
-						a(href="api/games/#{val.id}") Join
+						a(href="/api/games/#{val.id}") Join
 
 	div.rightArticle
 		article
@@ -57,27 +77,11 @@ block content
 			div.log
 				div.logContent
 					div
-						p Player 1 raises $20
-					div
-						p Player 2 folded
-					div
-						p Player 3 folded
-					div
-						p Player 1 won $23
-					div
-						p Player 1: Thank you!
-					div
-						p Player 2: ugh...
-					div
-						p Player 3: ;-;
-					div
-						p Player 1 won $23
-					div
-						p Player 1: Thank you!
-					div
-						p Player 2: ugh...
-					div
-						p Player 3: ;-;
+						p#conversation
+			div.chatbox
+				label(for='message')
+				input(type='message', name='message', id = 'data')
+				button(type='submit' ,id ='datasend') send
 
 	
 

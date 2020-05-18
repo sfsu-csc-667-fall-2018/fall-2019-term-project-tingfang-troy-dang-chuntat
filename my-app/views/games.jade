@@ -1,10 +1,50 @@
 extends layout
 
 block content
+	script(src="/socket.io/socket.io.js")
+	script.
+		var users = [];
+		var socket = io();
+		socket.on('connect', () => {
+		console.log("AAA");
+		socket.emit("CreateRoom", "#{id}",  "#{username}")
+		socket.on('joinedUser',function(data) {
+		console.log("hhey")
+		//-  document.body.innerHTML = '';
+		//-  document.write(data);
+		//- console.log(io.sockets.adapter.rooms['test'].length);
+		//- console.log(io.sockets.clients("room-5"))
+		console.log(data)}  ) });
+	
+		
+
+		socket.on('number',function(data) {
+		//-  document.body.innerHTML = '';
+		//-  document.write(data);
+		console.log(data)
+		//- console.log(io.sockets.clients("room-5"))
+		$("#number").text(data);});
+
+		socket.on('username',function(data) {
+		//-  document.body.innerHTML = '';
+		//-  document.write(data);
+		
+		users.push(data)
+		console.log(users) })
+		//- console.log(io.sockets.clients("room-5"))
+		//- $("#nu").texappt(data);});
+
+		//- socket.on('items',function(data) {
+		//- //-  document.body.innerHTML = '';
+		//- //-  document.write(data);
+		//- console.log(data)});
+
+		
+
 	div.navbar
 		ul
 			li 
-				p Room #{id}
+				p#room 
 			li 
 				a(href="/games/quit") Quit
 
@@ -100,7 +140,7 @@ block content
 						div
 							p Player 4: Why did I fold.
 						div
-							p Player 6: When is player 5 joining?
+							p#number
 
 			div.responses
 				ul

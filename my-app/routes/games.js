@@ -20,8 +20,9 @@ router.get('/create', function(req,res, next) {
 		// db.any(`INSERT INTO "games" ("creator") VALUES ('${username}')`)
 // db.any(`DELETE  FROM games WHERE creator = '${username}'`)
 	db.any(`INSERT INTO games ("creator") VALUES ('${username}')`)
-  .then( db.any(`SELECT * FROM "games" WHERE creator=$1`, [username])
+  .then( __ => db.any(`SELECT * FROM "games" WHERE creator=$1`, [username])
   .then ( result => {
+	
 
 	var id = result[result.length -1].id
 	  console.log("AAAA", id)
@@ -35,7 +36,7 @@ router.get('/create', function(req,res, next) {
 })
 
 router.get('/quit', function(request, response) {
-	if( req.isAuthenticated()) {
+	if( request.isAuthenticated()) {
 
 	var {user} = request
 	username = user['username']

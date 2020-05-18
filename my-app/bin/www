@@ -7,6 +7,8 @@
 var app = require('../app');
 var debug = require('debug')('my-app:server');
 var http = require('http');
+const socket = require( '../socket/' )
+
 /**
  * Get port from environment and store in Express.
  */
@@ -19,6 +21,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+socket.init( app, server );
+
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -96,27 +100,31 @@ function onListening() {
 //   console.log('New WS connections .... ');
 // });
 
-var socket = require('socket.io')
+// var socket = require('socket.io')
 
 
-var io = socket.listen(server);
-var currentConnections = {};
-io.sockets.on('connection', function (socket) {
-  console.log('client connect');
+// var io = socket.listen(server);
+
+// io.sockets.on('connection', function (socket) {
+//   var currentConnections = {};
+//   console.log('client connect');
+//   currentConnections[socket.id] = "Socket ID " + socket.id + ""
+//   socket.send("messagd",'hi');
+//   // socket.on('echo', function (data) {
+//   //     io.sockets.emit('message', data);
+//   // });
+//   socket.emit('message', 'Welcome to poker');
   
-  // socket.on('echo', function (data) {
-  //     io.sockets.emit('message', data);
-  // });
-  socket.emit('message', 'Welcome to poker');
-  socket.broadcast.emit('message', 'A user has joined the lobby');
+//   socket.broadcast.emit('message', 'A user has joined the lobby');
 
-  socket.on('disconnect', () => {
-    io.emit('message', 'A user has leave the lobby');
-  });
-});
-var express = require('express');
-var ex = express();
-ex.use(function(req,res,next){
-  req.io = io;
-  next();
-});
+//   socket.on('disconnect', () => {
+    
+//     io.to(socket.id).emit('message', 'A user has leave the lobby');
+//   });
+// });
+// var express = require('express');
+// var ex = express();
+// ex.use(function(req,res,next){
+//   req.io = io;
+//   next();
+// });
